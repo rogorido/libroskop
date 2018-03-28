@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include <QtGui>
 #include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -9,8 +10,9 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    QString home = QDir::homePath();
     db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("libros.db");
+    db.setDatabaseName(home + QString("/libros.db"));
 
     if (db.open())
         qDebug() << "DB abierta, paspanín!";
