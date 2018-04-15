@@ -5,6 +5,8 @@
 #include <QMdiSubWindow>
 #include <QSqlDatabase>
 
+class NuevoLibroEntrada;
+
 namespace Ui {
 class MainWindow;
 }
@@ -21,10 +23,13 @@ public:
 
 private slots:
     void on_actionSalir_triggered();
+    void crearNuevoLibro();
 
 private:
     Ui::MainWindow *ui;
     QSqlDatabase db;
+
+    NuevoLibroEntrada *dlgnuevolibro;
 };
 
 #endif // MAINWINDOW_H

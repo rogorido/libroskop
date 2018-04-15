@@ -2,7 +2,11 @@
 #include "ui_mainwindow.h"
 
 #include <QtGui>
+#include <QMdiArea>
+#include <QMdiSubWindow>
 #include <QDebug>
+
+#include "gui/nuevolibroentrada.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -16,6 +20,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     if (db.open())
         qDebug() << "DB abierta, paspanín!";
+
+    connect(ui->actionNuevoLibro, SIGNAL(triggered(bool)), this, SLOT(crearNuevoLibro()));
 }
 
 MainWindow::~MainWindow()
@@ -35,4 +41,11 @@ QMdiSubWindow *MainWindow::crearSubWindow()
 void MainWindow::on_actionSalir_triggered()
 {
     qApp->quit();
+}
+
+void MainWindow::crearNuevoLibro()
+{
+    dlgnuevolibro = new NuevoLibroEntrada(this);
+    QMdiSubWindow *window = ui->mdiArea->addSubWindow(dlgnuevolibro);
+    window->show();
 }
