@@ -24,6 +24,14 @@ MainWindow::~MainWindow()
     db.close();
 }
 
+QMdiSubWindow *MainWindow::crearSubWindow()
+{
+    QMdiSubWindow *child = new QMdiSubWindow;
+    ui->mdiArea->addSubWindow(child);
+
+    return child;
+}
+
 void MainWindow::on_actionSalir_triggered()
 {
     qApp->quit();
