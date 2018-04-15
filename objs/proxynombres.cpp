@@ -1,6 +1,6 @@
 #include "proxynombres.h"
 
-ProxyNombres::ProxyNombres(tiposeleccionar tipo, QObject *parent)
+ProxyNombres::ProxyNombres(int tipo, QObject *parent)
   : QSortFilterProxyModel(parent), tipoproxy(tipo)
 {
 }

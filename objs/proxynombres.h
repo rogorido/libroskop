@@ -8,7 +8,7 @@ class ProxyNombres : public QSortFilterProxyModel
     Q_OBJECT
 
 public:
-    ProxyNombres(tiposeleccionar tipo, QObject *parent = 0);
+    ProxyNombres(int tipo, QObject *parent = 0);
 
 protected:
     bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const override;
@@ -21,7 +21,7 @@ private:
        2. 1 es para los nombres de lugares
     */
     
-    tiposeleccionar tipoproxy;
+    int tipoproxy;
 };
 
 #endif // PROXYNOMBRES_H
