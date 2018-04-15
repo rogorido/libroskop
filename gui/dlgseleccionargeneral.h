@@ -3,6 +3,8 @@
 
 #include <QWidget>
 
+#include "objs/variados.h"
+
 //class QSqlTableModel;
 class QSqlQueryModel;
 class ProxyNombres;
@@ -32,9 +34,18 @@ private slots:
     void actualizarFiltro(const QString filtro);
 
     void aceptar();
-    void cerrar();
+
+public slots:
+
+    void actualizarAutores();
+    void actualizarCategorias();
 
 signals:
+
+    // estas dos se emiten para que las recoja la MainWindow
+    void anadirNuevoAutorSignal();
+    void anadirNuevaCategoriaSignal();
+
     void autorEscogidoSignal(elementopareado autor);
     void categoriaEscogidaSignal(elementopareado categoria);
 
@@ -43,11 +54,6 @@ private:
 
     QSqlQueryModel *m_objeto;
     ProxyNombres *m_objeto_proxy;
-
-    struct elementopareado{
-      int id = 0;
-      QString elemento = "";
-    };
 
     /*
      * aquí guardamos la query que usamos
