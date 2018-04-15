@@ -26,12 +26,17 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    gui/nuevolibroentrada.cpp
+    gui/nuevolibroentrada.cpp \
+    gui/dlgseleccionargeneral.cpp \
+    objs/proxynombres.cpp
 
 HEADERS += \
         mainwindow.h \
-    gui/nuevolibroentrada.h
+    gui/nuevolibroentrada.h \
+    gui/dlgseleccionargeneral.h \
+    objs/proxynombres.h
 
 FORMS += \
         mainwindow.ui \
-    gui/nuevolibroentrada.ui
+    gui/nuevolibroentrada.ui \
+    gui/dlgseleccionargeneral.ui
