@@ -7,6 +7,10 @@
 #include <QDebug>
 
 #include "gui/nuevolibroentrada.h"
+#include "gui/nuevoautor.h"
+#include "gui/dlgseleccionargeneral.h"
+
+#include "objs/variados.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -38,6 +42,35 @@ QMdiSubWindow *MainWindow::crearSubWindow()
     return child;
 }
 
+void MainWindow::seleccionarAutor()
+{
+    dlgseleccionar = new dlgSeleccionarGeneral(0, this);
+    connect(dlgseleccionar, SIGNAL(autorEscogidoSignal(elementopareado)), dlgnuevolibro, SLOT(recibirAutor(elementopareado)));
+    connect(dlgseleccionar, SIGNAL(anadirNuevoAutorSignal()), this, SLOT(anadirAutor()));
+    QMdiSubWindow *window = ui->mdiArea->addSubWindow(dlgseleccionar);
+    window->show();
+
+}
+
+void MainWindow::anadirAutor()
+{
+    dlgnuevoautor = new NuevoAutor(this);
+    connect(dlgnuevoautor, SIGNAL(nuevoAutorAceptadoSignal()), dlgseleccionar, SLOT(actualizarAutores()));
+    QMdiSubWindow *window = ui->mdiArea->addSubWindow(dlgnuevoautor);
+    window->show();
+
+}
+
+void MainWindow::seleccionarCategoria()
+{
+
+}
+
+void MainWindow::anadirCategoria()
+{
+
+}
+
 void MainWindow::on_actionSalir_triggered()
 {
     qApp->quit();
@@ -46,6 +79,7 @@ void MainWindow::on_actionSalir_triggered()
 void MainWindow::crearNuevoLibro()
 {
     dlgnuevolibro = new NuevoLibroEntrada(this);
+    connect(dlgnuevolibro, SIGNAL(seleccionarAutorSignal()), this, SLOT(seleccionarAutor()));
     QMdiSubWindow *window = ui->mdiArea->addSubWindow(dlgnuevolibro);
     window->show();
 }

@@ -6,6 +6,8 @@
 #include <QSqlDatabase>
 
 class NuevoLibroEntrada;
+class NuevoAutor;
+class dlgSeleccionarGeneral;
 
 namespace Ui {
 class MainWindow;
@@ -21,6 +23,14 @@ public:
 
     QMdiSubWindow *crearSubWindow();
 
+public slots:
+
+    void seleccionarAutor();
+    void anadirAutor();
+
+    void seleccionarCategoria();
+    void anadirCategoria();
+
 private slots:
     void on_actionSalir_triggered();
     void crearNuevoLibro();
@@ -29,7 +39,9 @@ private:
     Ui::MainWindow *ui;
     QSqlDatabase db;
 
+    dlgSeleccionarGeneral *dlgseleccionar;
     NuevoLibroEntrada *dlgnuevolibro;
+    NuevoAutor *dlgnuevoautor;
 };
 
 #endif // MAINWINDOW_H
