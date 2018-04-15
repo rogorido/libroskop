@@ -19,6 +19,11 @@ NuevoLibroEntrada::~NuevoLibroEntrada()
     delete ui;
 }
 
+void NuevoLibroEntrada::recibirAutor(elementopareado autor)
+{
+
+}
+
 void NuevoLibroEntrada::aceptarLibro()
 {
 
@@ -26,7 +31,7 @@ void NuevoLibroEntrada::aceptarLibro()
 
 void NuevoLibroEntrada::anadirAutor()
 {
-
+    emit(seleccionarAutorSignal());
 }
 
 void NuevoLibroEntrada::quitarAutor()

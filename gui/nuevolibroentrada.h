@@ -3,6 +3,8 @@
 
 #include <QWidget>
 
+#include "objs/variados.h"
+
 namespace Ui {
 class NuevoLibroEntrada;
 }
@@ -15,6 +17,10 @@ public:
     explicit NuevoLibroEntrada(QWidget *parent = 0);
     ~NuevoLibroEntrada();
 
+public slots:
+
+    void recibirAutor(elementopareado autor);
+
 private slots:
 
     void aceptarLibro();
@@ -25,15 +31,10 @@ private slots:
 
 signals:
 
-    void anadirAutorSignal();
+    void seleccionarAutorSignal();
 
 private:
     Ui::NuevoLibroEntrada *ui;
-
-    struct elementopareado{
-      int id = 0;
-      QString elemento = "";
-    };
 
     QList<elementopareado> autores;
     QList<elementopareado> categorias;
