@@ -28,15 +28,19 @@ SOURCES += \
         mainwindow.cpp \
     gui/nuevolibroentrada.cpp \
     gui/dlgseleccionargeneral.cpp \
-    objs/proxynombres.cpp
+    objs/proxynombres.cpp \
+    gui/nuevoautor.cpp
 
 HEADERS += \
         mainwindow.h \
     gui/nuevolibroentrada.h \
     gui/dlgseleccionargeneral.h \
-    objs/proxynombres.h
+    objs/proxynombres.h \
+    gui/nuevoautor.h \
+    objs/variados.h
 
 FORMS += \
         mainwindow.ui \
     gui/nuevolibroentrada.ui \
-    gui/dlgseleccionargeneral.ui
+    gui/dlgseleccionargeneral.ui \
+    gui/nuevoautor.ui
