@@ -46,6 +46,21 @@ void NuevoLibroEntrada::anadirAutor()
 
 void NuevoLibroEntrada::quitarAutor()
 {
+    QModelIndex idx = ui->lwAutores->currentIndex();
+
+    if (!idx.isValid())
+        return;
+
+    QString autorescogido = idx.data().toString();
+
+    for (int var = 0; var < autores.size(); ++var) {
+        if (autores.at(var).elemento == autorescogido) {
+            autores.removeAt(var);
+            break;
+        }
+    }
+
+    ui->lwAutores->takeItem(ui->lwAutores->currentRow());
 
 }
 
@@ -57,5 +72,19 @@ void NuevoLibroEntrada::anadirCategoria()
 
 void NuevoLibroEntrada::quitarCategoria()
 {
+    QModelIndex idx = ui->lwCategorias->currentIndex();
 
+    if (!idx.isValid())
+        return;
+
+    QString cat_escogida = idx.data().toString();
+
+    for (int var = 0; var < categorias.size(); ++var) {
+        if (categorias.at(var).elemento == cat_escogida) {
+            categorias.removeAt(var);
+            break;
+        }
+    }
+
+    ui->lwCategorias->takeItem(ui->lwCategorias->currentRow());
 }
