@@ -1,6 +1,10 @@
 #include "nuevolibroentrada.h"
 #include "ui_nuevolibroentrada.h"
 
+#include <QSqlQuery>
+#include <QSqlError>
+#include <QDebug>
+
 NuevoLibroEntrada::NuevoLibroEntrada(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::NuevoLibroEntrada)
@@ -36,7 +40,29 @@ void NuevoLibroEntrada::recibirCategoria(elementopareado categoria)
 
 void NuevoLibroEntrada::aceptarLibro()
 {
+    QSqlQuery query;
 
+    QString titulo = ui->txtTitulo->text();
+    QString subtitulo = ui->txtSubtitulo->text();
+    QString editorial = ui->txtEditorial->text();
+    QString year = ui->txtAno->text();
+    QString lugar = ui->txtLugar->text();
+    QString localizacion = ui->txtLocalizacion->text();
+
+    query.prepare("INSERT INTO libro(titulo, subtitulo, editorial, lugar, fecha, localizacion) "
+                  "VALUES(:titulo, :subtitulo, :editorial, :lugar, :fecha, :localizacion)");
+    query.bindValue(":titulo", titulo);
+    query.bindValue(":subtitulo", subtitulo);
+    query.bindValue(":editorial", editorial);
+    query.bindValue(":lugar", lugar);
+    query.bindValue(":fecha", year);
+    query.bindValue(":localizacion", localizacion);
+
+    if (!query.exec()){
+        qDebug() << query.lastError();
+    }
+    else
+        qDebug() << "geschafft";
 }
 
 void NuevoLibroEntrada::anadirAutor()
