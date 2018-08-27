@@ -5,6 +5,9 @@
 
 #include "objs/variados.h"
 
+class QSqlQueryModel;
+class QCompleter;
+
 namespace Ui {
 class NuevoLibroEntrada;
 }
@@ -48,6 +51,19 @@ private:
 
     QList<elementopareado> autores;
     QList<elementopareado> categorias;
+
+    QSqlQueryModel *m_editoriales;
+    QSqlQueryModel *m_lugares;
+    QCompleter *c_editoriales;
+    QCompleter *c_lugares;
+
+    /*
+     * esto lo metemos en una QStringList pq en teoría son solo dos
+     * que no cambian...
+     */
+
+    QStringList m_localizaciones;
+    QCompleter *c_localizaciones;
 };
 
 #endif // NUEVOLIBROENTRADA_H

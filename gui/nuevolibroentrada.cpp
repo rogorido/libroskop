@@ -5,11 +5,19 @@
 #include <QSqlError>
 #include <QDebug>
 
+#include <QSqlQueryModel>
+#include <QCompleter>
+
+const QString sql_editoriales = "SELECT DISTINCT editorial FROM libro ORDER BY editorial";
+const QString sql_lugares = "SELECT DISTINCT lugar FROM libro ORDER BY lugar";
+
 NuevoLibroEntrada::NuevoLibroEntrada(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::NuevoLibroEntrada)
 {
     ui->setupUi(this);
+
+    cargarModelos();
 
     connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(aceptarLibro()));
     connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(cerrar()));
@@ -177,5 +185,23 @@ void NuevoLibroEntrada::borrarCampos()
 
 void NuevoLibroEntrada::cargarModelos()
 {
+    m_editoriales = new QSqlQueryModel(this);
+    m_editoriales->setQuery(sql_editoriales);
+
+    c_editoriales = new QCompleter(m_editoriales, this);
+    c_editoriales->setCaseSensitivity(Qt::CaseInsensitive);
+    ui->txtEditorial->setCompleter(c_editoriales);
+
+    m_lugares = new QSqlQueryModel(this);
+    m_lugares->setQuery(sql_lugares);
+
+    c_lugares = new QCompleter(m_lugares, this);
+    c_lugares->setCaseSensitivity(Qt::CaseInsensitive);
+    ui->txtLugar->setCompleter(c_lugares);
+
+    m_localizaciones << "Universidad" << "Embajada";
+    c_localizaciones = new QCompleter(m_localizaciones, this);
+    c_localizaciones->setCaseSensitivity(Qt::CaseInsensitive);
+    ui->txtLocalizacion->setCompleter(c_localizaciones);
 
 }
