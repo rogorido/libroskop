@@ -63,6 +63,11 @@ void NuevoLibroEntrada::aceptarLibro()
     }
     else {
         qDebug() << "geschafft";
+        query.exec("SELECT seq FROM sqlite_sequence WHERE name='libro'");
+        query.first();
+        int ultimolibro_id = query.value(0).toInt();
+        introducirAutores(ultimolibro_id);
+        introducirCategorias(ultimolibro_id);
         borrarCampos();
     }
 }
@@ -115,6 +120,34 @@ void NuevoLibroEntrada::quitarCategoria()
     }
 
     ui->lwCategorias->takeItem(ui->lwCategorias->currentRow());
+}
+
+void NuevoLibroEntrada::introducirAutores(int id)
+{
+    QSqlQuery query;
+
+    for (int var = 0; var < autores.size(); ++var) {
+        query.prepare("INSERT INTO libros_autores(libro_id, autor_id) VALUES(:libro_id, :autor_id)");
+        query.bindValue(":libro_id", id);
+        query.bindValue(":autor_id", autores.at(var).id);
+        if (!query.exec())
+            qDebug() << query.lastError();
+    }
+
+}
+
+void NuevoLibroEntrada::introducirCategorias(int id)
+{
+    QSqlQuery query;
+
+    for (int var = 0; var < categorias.size(); ++var) {
+        query.prepare("INSERT INTO libros_categorias(libro_id, categoria_id) VALUES(:libro_id, :categoria_id)");
+        query.bindValue(":libro_id", id);
+        query.bindValue(":categoria_id", categorias.at(var).id);
+        if (!query.exec())
+            qDebug() << query.lastError();
+    }
+
 }
 
 void NuevoLibroEntrada::borrarCampos()

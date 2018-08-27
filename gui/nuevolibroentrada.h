@@ -30,6 +30,10 @@ private slots:
     void anadirCategoria();
     void quitarCategoria();
 
+    // esto se activa en caso de que el libro se meta bien en la db
+    void introducirAutores(int id);
+    void introducirCategorias(int id);
+
     void borrarCampos();
     void cargarModelos();
 
