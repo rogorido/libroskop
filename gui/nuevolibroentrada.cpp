@@ -21,7 +21,17 @@ NuevoLibroEntrada::~NuevoLibroEntrada()
 
 void NuevoLibroEntrada::recibirAutor(elementopareado autor)
 {
+    autores.append(autor);
 
+    QListWidgetItem *item = new QListWidgetItem(autor.elemento, ui->lwAutores);
+
+}
+
+void NuevoLibroEntrada::recibirCategoria(elementopareado categoria)
+{
+    categorias.append(categoria);
+
+    QListWidgetItem *item = new QListWidgetItem(categoria.elemento, ui->lwCategorias);
 }
 
 void NuevoLibroEntrada::aceptarLibro()
@@ -41,6 +51,7 @@ void NuevoLibroEntrada::quitarAutor()
 
 void NuevoLibroEntrada::anadirCategoria()
 {
+    emit(seleccionarCategoriaSignal());
 
 }
 

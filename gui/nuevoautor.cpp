@@ -12,7 +12,7 @@ NuevoAutor::NuevoAutor(QWidget *parent) :
     ui->setupUi(this);
 
     connect(ui->btOK, SIGNAL(clicked(bool)), SLOT(aceptarNuevoAutor()));
-    connect(ui->btCancelar, SIGNAL(clicked(bool)), SLOT(close()));
+    connect(ui->btCancelar, SIGNAL(clicked(bool)), SLOT(cerrar()));
 }
 
 NuevoAutor::~NuevoAutor()
@@ -37,6 +37,14 @@ void NuevoAutor::aceptarNuevoAutor()
         qDebug() << query.lastError();
         qDebug() << "esta es la query: " << query.executedQuery().toUtf8();
     }
-    else
+    else{
         emit(nuevoAutorAceptadoSignal());
+        // por qué carajos no funciona un simple close()?
+        parentWidget()->close();
+    }
+}
+
+void NuevoAutor::cerrar()
+{
+    parentWidget()->close();
 }

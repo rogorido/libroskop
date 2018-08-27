@@ -18,6 +18,7 @@ public:
 private slots:
 
     void aceptarNuevoAutor();
+    void cerrar();
 
 signals:
 

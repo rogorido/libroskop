@@ -25,6 +25,21 @@ public:
 
 public slots:
 
+    /*
+     * El asunto funciona así: en estas window se conectan todos las señales
+     * y slots de los diferentes forms que se van abriendo. El form NuevoLibro
+     * emite una señal que se conecta con el este slot de seleccionarAutor()
+     * que a su vez abre el form dlgSeleccionar y este emite otras señales
+     * que se conectar con el form NuevoLibro A TRAVÉS de este MainWindow!
+     *
+     * Por tanto:
+     *
+     * dlgnuevolibro emite-> seleccionarAutor
+     *   --> esto abre dlgSeleccionar
+     *   ---> que emite autorEscogidoSignal que se conecta con recibirAutor
+     *        de dlgnuevolibro
+     */
+
     void seleccionarAutor();
     void anadirAutor();
 

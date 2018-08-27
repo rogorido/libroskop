@@ -22,6 +22,9 @@ class dlgSeleccionarGeneral : public QWidget
     Q_OBJECT
 
 public:
+    /*
+     *  tipo: 0 = autor, 1 = categoría
+     */
     explicit dlgSeleccionarGeneral(int tipo, QWidget *parent = 0);
     ~dlgSeleccionarGeneral();
 
@@ -34,6 +37,7 @@ private slots:
     void actualizarFiltro(const QString filtro);
 
     void aceptar();
+    void cerrar();
 
 public slots:
 

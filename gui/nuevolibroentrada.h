@@ -20,6 +20,7 @@ public:
 public slots:
 
     void recibirAutor(elementopareado autor);
+    void recibirCategoria(elementopareado categoria);
 
 private slots:
 
@@ -32,6 +33,7 @@ private slots:
 signals:
 
     void seleccionarAutorSignal();
+    void seleccionarCategoriaSignal();
 
 private:
     Ui::NuevoLibroEntrada *ui;

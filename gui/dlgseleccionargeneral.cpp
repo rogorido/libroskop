@@ -24,7 +24,7 @@ dlgSeleccionarGeneral::dlgSeleccionarGeneral(int tipo, QWidget *parent) :
     connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(aceptar()));
     connect(ui->twSeleccionar, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(aceptar()));
     connect(ui->twSeleccionar, SIGNAL(clicked(const QModelIndex &)), this, SLOT(seleccionarObjeto(QModelIndex)));
-    connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(close()));
+    connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(cerrar()));
 
     ui->txtFiltro->setFocus();
 }
@@ -133,6 +133,11 @@ void dlgSeleccionarGeneral::aceptar(){
     close();
 }
 
+void dlgSeleccionarGeneral::cerrar()
+{
+    parentWidget()->close();
+}
+
 void dlgSeleccionarGeneral::autor(){
 
     elementopareado autorescogido;
@@ -155,6 +160,7 @@ void dlgSeleccionarGeneral::autor(){
     autorescogido.elemento = nombrecompleto;
 
     emit(autorEscogidoSignal(autorescogido));
+    parentWidget()->close();
 }
 
 void dlgSeleccionarGeneral::categoria(){
@@ -175,6 +181,7 @@ void dlgSeleccionarGeneral::categoria(){
     categoriaescogida.elemento = nombrecategoria;
 
     emit(categoriaEscogidaSignal(categoriaescogida));
+    parentWidget()->close();
 }
 
 void dlgSeleccionarGeneral::anadirObjeto(){
@@ -200,9 +207,12 @@ void dlgSeleccionarGeneral::actualizarObjeto(){
 
 void dlgSeleccionarGeneral::actualizarAutores(){
 
+    actualizarObjeto();
 }
 
 void dlgSeleccionarGeneral::actualizarCategorias(){
+
+    actualizarObjeto();
 
 }
 
