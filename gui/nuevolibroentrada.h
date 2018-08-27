@@ -30,6 +30,9 @@ private slots:
     void anadirCategoria();
     void quitarCategoria();
 
+    void borrarCampos();
+    void cargarModelos();
+
 signals:
 
     void seleccionarAutorSignal();

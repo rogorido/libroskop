@@ -61,8 +61,10 @@ void NuevoLibroEntrada::aceptarLibro()
     if (!query.exec()){
         qDebug() << query.lastError();
     }
-    else
+    else {
         qDebug() << "geschafft";
+        borrarCampos();
+    }
 }
 
 void NuevoLibroEntrada::anadirAutor()
@@ -113,4 +115,28 @@ void NuevoLibroEntrada::quitarCategoria()
     }
 
     ui->lwCategorias->takeItem(ui->lwCategorias->currentRow());
+}
+
+void NuevoLibroEntrada::borrarCampos()
+{
+    ui->txtTitulo->setText("");
+    ui->txtSubtitulo->setText("");
+    ui->txtEditorial->setText("");
+    ui->txtAno->setText("");
+    ui->txtLugar->setText("");
+    ui->txtLocalizacion->setText("");
+
+    autores.clear();
+    categorias.clear();
+
+    ui->lwAutores->clear();
+    ui->lwCategorias->clear();
+
+    ui->txtTitulo->setFocus();
+
+}
+
+void NuevoLibroEntrada::cargarModelos()
+{
+
 }
