@@ -24,6 +24,7 @@ public slots:
 
 private slots:
 
+    void cerrar();
     void aceptarLibro();
     void anadirAutor();
     void quitarAutor();

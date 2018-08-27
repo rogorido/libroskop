@@ -12,6 +12,7 @@ NuevoLibroEntrada::NuevoLibroEntrada(QWidget *parent) :
     ui->setupUi(this);
 
     connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(aceptarLibro()));
+    connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(cerrar()));
     connect(ui->btAnadirAutor, SIGNAL(clicked(bool)), this, SLOT(anadirAutor()));
     connect(ui->btQuitarAutor, SIGNAL(clicked(bool)), this, SLOT(quitarAutor()));
     connect(ui->btAnadirCategoria, SIGNAL(clicked(bool)), this, SLOT(anadirCategoria()));
@@ -36,6 +37,11 @@ void NuevoLibroEntrada::recibirCategoria(elementopareado categoria)
     categorias.append(categoria);
 
     QListWidgetItem *item = new QListWidgetItem(categoria.elemento, ui->lwCategorias);
+}
+
+void NuevoLibroEntrada::cerrar()
+{
+    parentWidget()->close();
 }
 
 void NuevoLibroEntrada::aceptarLibro()
