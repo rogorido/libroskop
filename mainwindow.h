@@ -8,6 +8,7 @@
 class NuevoLibroEntrada;
 class NuevoAutor;
 class dlgSeleccionarGeneral;
+class dlgGestionLibros;
 
 namespace Ui {
 class MainWindow;
@@ -50,6 +51,8 @@ private slots:
     void on_actionSalir_triggered();
     void crearNuevoLibro();
 
+    void on_actionLibros_triggered();
+
 private:
     Ui::MainWindow *ui;
     QSqlDatabase db;
@@ -57,6 +60,7 @@ private:
     dlgSeleccionarGeneral *dlgseleccionar;
     NuevoLibroEntrada *dlgnuevolibro;
     NuevoAutor *dlgnuevoautor;
+    dlgGestionLibros *dlggestionlibros;
 };
 
 #endif // MAINWINDOW_H

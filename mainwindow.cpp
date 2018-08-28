@@ -9,6 +9,7 @@
 #include "gui/nuevolibroentrada.h"
 #include "gui/nuevoautor.h"
 #include "gui/dlgseleccionargeneral.h"
+#include "gui/dlggestionlibros.h"
 
 #include "objs/variados.h"
 
@@ -88,4 +89,12 @@ void MainWindow::crearNuevoLibro()
     connect(dlgnuevolibro, SIGNAL(seleccionarCategoriaSignal()), this, SLOT(seleccionarCategoria()));
     QMdiSubWindow *window = ui->mdiArea->addSubWindow(dlgnuevolibro);
     window->show();
+}
+
+void MainWindow::on_actionLibros_triggered()
+{
+    dlggestionlibros = new dlgGestionLibros(this);
+    QMdiSubWindow *window = ui->mdiArea->addSubWindow(dlggestionlibros);
+    window->show();
+
 }

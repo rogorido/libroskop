@@ -29,7 +29,8 @@ SOURCES += \
     gui/nuevolibroentrada.cpp \
     gui/dlgseleccionargeneral.cpp \
     objs/proxynombres.cpp \
-    gui/nuevoautor.cpp
+    gui/nuevoautor.cpp \
+    gui/dlggestionlibros.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -37,13 +38,15 @@ HEADERS += \
     gui/dlgseleccionargeneral.h \
     objs/proxynombres.h \
     gui/nuevoautor.h \
-    objs/variados.h
+    objs/variados.h \
+    gui/dlggestionlibros.h
 
 FORMS += \
         mainwindow.ui \
     gui/nuevolibroentrada.ui \
     gui/dlgseleccionargeneral.ui \
-    gui/nuevoautor.ui
+    gui/nuevoautor.ui \
+    gui/dlggestionlibros.ui
 
 
 RESOURCES += \
