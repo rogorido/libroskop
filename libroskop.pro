@@ -44,3 +44,10 @@ FORMS += \
     gui/nuevolibroentrada.ui \
     gui/dlgseleccionargeneral.ui \
     gui/nuevoautor.ui
+
+
+RESOURCES += \
+      icons.qrc
+
+
+

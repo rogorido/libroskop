@@ -46,9 +46,14 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actionNuevoLibro"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionNuevoLibro">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/icons/book.png</normaloff>:/icons/icons/book.png</iconset>
+   </property>
    <property name="text">
     <string>Nuevo libro</string>
    </property>
@@ -63,6 +68,8 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="icons.qrc"/>
+ </resources>
  <connections/>
 </ui>
