@@ -3,5 +3,6 @@
         <file>icons/book.png</file>
         <file>icons/user-trash.png</file>
         <file>icons/biblioteca.png</file>
+        <file>icons/network-transmit-receive.png</file>
     </qresource>
 </RCC>

@@ -42,6 +42,7 @@
      <string>Gestión</string>
     </property>
     <addaction name="actionLibros"/>
+    <addaction name="actionExportarLatex"/>
    </widget>
    <addaction name="menuGeneral"/>
    <addaction name="menuGesti_n"/>
@@ -55,6 +56,7 @@
    </attribute>
    <addaction name="actionNuevoLibro"/>
    <addaction name="actionLibros"/>
+   <addaction name="actionExportarLatex"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionNuevoLibro">
@@ -81,6 +83,15 @@
    </property>
    <property name="text">
     <string>Libros</string>
+   </property>
+  </action>
+  <action name="actionExportarLatex">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/icons/network-transmit-receive.png</normaloff>:/icons/icons/network-transmit-receive.png</iconset>
+   </property>
+   <property name="text">
+    <string>Exportar a latex</string>
    </property>
   </action>
  </widget>
