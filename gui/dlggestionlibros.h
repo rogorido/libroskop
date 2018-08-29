@@ -24,6 +24,8 @@ private slots:
 
     void on_rbEmbajada_clicked();
 
+    void on_pbBorrar_clicked();
+
 private:
     Ui::dlgGestionLibros *ui;
 
