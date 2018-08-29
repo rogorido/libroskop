@@ -2,5 +2,6 @@
     <qresource prefix="/icons">
         <file>icons/book.png</file>
         <file>icons/user-trash.png</file>
+        <file>icons/biblioteca.png</file>
     </qresource>
 </RCC>

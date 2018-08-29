@@ -54,6 +54,7 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionNuevoLibro"/>
+   <addaction name="actionLibros"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionNuevoLibro">
@@ -74,6 +75,10 @@
    </property>
   </action>
   <action name="actionLibros">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/icons/biblioteca.png</normaloff>:/icons/icons/biblioteca.png</iconset>
+   </property>
    <property name="text">
     <string>Libros</string>
    </property>
