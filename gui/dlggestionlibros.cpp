@@ -18,6 +18,13 @@ dlgGestionLibros::dlgGestionLibros(QWidget *parent) :
 
     m_libros = new QSqlQueryModel(this);
     m_libros->setQuery(sql_general);
+    m_libros->setHeaderData(1, Qt::Horizontal, "Título");
+    m_libros->setHeaderData(2, Qt::Horizontal, "Subtítulo");
+    m_libros->setHeaderData(3, Qt::Horizontal, "Editorial");
+    m_libros->setHeaderData(4, Qt::Horizontal, "Lugar");
+    m_libros->setHeaderData(5, Qt::Horizontal, "Fecha");
+    m_libros->setHeaderData(6, Qt::Horizontal, "Localización");
+
     ui->tvLibros->setModel(m_libros);
     ui->tvLibros->hideColumn(0); // la id
 
@@ -25,7 +32,7 @@ dlgGestionLibros::dlgGestionLibros(QWidget *parent) :
     //ui->twResoluciones->setColumnWidth(1, 80);
     ui->tvLibros->resizeColumnsToContents();
     ui->tvLibros->resizeRowsToContents();
-    ui->tvLibros->horizontalHeader()->setStretchLastSection(true);
+    //ui->tvLibros->horizontalHeader()->setStretchLastSection(true);
     ui->tvLibros->setSortingEnabled(true);
     ui->tvLibros->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tvLibros->setSelectionMode(QAbstractItemView::SingleSelection);
