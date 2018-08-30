@@ -43,6 +43,7 @@ dlgGestionLibros::dlgGestionLibros(QWidget *parent) :
         ui->tvLibros->setCurrentIndex(index);
     }
 
+    sql_activa = sql_general;
     ui->lblTotal->setText(QString("Total: %1").arg(m_libros->rowCount()));
 }
 
@@ -54,21 +55,20 @@ dlgGestionLibros::~dlgGestionLibros()
 void dlgGestionLibros::on_rbUniversidad_clicked()
 {
     m_libros->setQuery(sql_universidad);
-    ui->lblTotal->setText(QString("Total: %1").arg(m_libros->rowCount()));
+    sql_activa = sql_universidad;
 }
 
 void dlgGestionLibros::on_rbTodos_clicked()
 {
 
     m_libros->setQuery(sql_general);
-    ui->lblTotal->setText(QString("Total: %1").arg(m_libros->rowCount()));
+    sql_activa = sql_general;
 }
 
 void dlgGestionLibros::on_rbEmbajada_clicked()
 {
     m_libros->setQuery(sql_embajada);
-
-    ui->lblTotal->setText(QString("Total: %1").arg(m_libros->rowCount()));
+    sql_activa = sql_embajada;
 }
 
 void dlgGestionLibros::on_pbBorrar_clicked()
@@ -103,5 +103,14 @@ void dlgGestionLibros::borrarLibro(int id)
 
     if (!query.exec(QString("DELETE FROM libro WHERE libro_id=%1").arg(id)))
         qDebug() << "fallido borrado de libros";
+
+    m_libros->setQuery(sql_activa);
+    actualizarLabelTotales();
+
+}
+
+void dlgGestionLibros::actualizarLabelTotales()
+{
+    ui->lblTotal->setText(QString("Total: %1").arg(m_libros->rowCount()));
 
 }

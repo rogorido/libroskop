@@ -24,11 +24,14 @@ private slots:
     void on_pbBorrar_clicked();
 
     void borrarLibro(int id);
+    void actualizarLabelTotales();
 
 private:
     Ui::dlgGestionLibros *ui;
 
     QSqlQueryModel *m_libros;
+
+    QString sql_activa;
 };
 
 #endif // DLGGESTIONLIBROS_H
