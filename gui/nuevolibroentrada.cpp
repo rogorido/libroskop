@@ -10,6 +10,7 @@
 
 const QString sql_editoriales = "SELECT DISTINCT editorial FROM libro ORDER BY editorial";
 const QString sql_lugares = "SELECT DISTINCT lugar FROM libro ORDER BY lugar";
+const QString sql_lenguas = "SELECT DISTINCT lengua FROM libro ORDER BY lengua";
 
 NuevoLibroEntrada::NuevoLibroEntrada(QWidget *parent) :
     QWidget(parent),
@@ -198,6 +199,13 @@ void NuevoLibroEntrada::cargarModelos()
     c_lugares = new QCompleter(m_lugares, this);
     c_lugares->setCaseSensitivity(Qt::CaseInsensitive);
     ui->txtLugar->setCompleter(c_lugares);
+
+    m_lenguas = new QSqlQueryModel(this);
+    m_lenguas->setQuery(sql_lenguas);
+
+    c_lenguas = new QCompleter(m_lenguas, this);
+    c_lenguas->setCaseSensitivity(Qt::CaseInsensitive);
+    ui->txtLengua->setCompleter(c_lenguas);
 
     m_localizaciones << "Universidad" << "Embajada";
     c_localizaciones = new QCompleter(m_localizaciones, this);

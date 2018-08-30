@@ -54,8 +54,10 @@ private:
 
     QSqlQueryModel *m_editoriales;
     QSqlQueryModel *m_lugares;
+    QSqlQueryModel *m_lenguas;
     QCompleter *c_editoriales;
     QCompleter *c_lugares;
+    QCompleter *c_lenguas;
 
     /*
      * esto lo metemos en una QStringList pq en teoría son solo dos

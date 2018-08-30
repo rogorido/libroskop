@@ -55,6 +55,9 @@
        <property name="text">
         <string>Editorial</string>
        </property>
+       <property name="buddy">
+        <cstring>txtEditorial</cstring>
+       </property>
       </widget>
      </item>
      <item>
@@ -64,6 +67,9 @@
       <widget class="QLabel" name="label_5">
        <property name="text">
         <string>Año</string>
+       </property>
+       <property name="buddy">
+        <cstring>txtAno</cstring>
        </property>
       </widget>
      </item>
@@ -75,10 +81,43 @@
        <property name="text">
         <string>Lugar</string>
        </property>
+       <property name="buddy">
+        <cstring>txtLugar</cstring>
+       </property>
       </widget>
      </item>
      <item>
       <widget class="QLineEdit" name="txtLugar"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_4">
+     <item>
+      <widget class="QLabel" name="label_7">
+       <property name="text">
+        <string>Lengua</string>
+       </property>
+       <property name="buddy">
+        <cstring>txtLengua</cstring>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="txtLengua"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_6">
+       <property name="text">
+        <string>Localización</string>
+       </property>
+       <property name="buddy">
+        <cstring>txtLocalizacion</cstring>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="txtLocalizacion"/>
      </item>
     </layout>
    </item>
@@ -162,17 +201,7 @@
     </widget>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_4">
-     <item>
-      <widget class="QLabel" name="label_6">
-       <property name="text">
-        <string>Localización</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="txtLocalizacion"/>
-     </item>
+    <layout class="QHBoxLayout" name="horizontalLayout_8">
      <item>
       <spacer name="horizontalSpacer">
        <property name="orientation">
@@ -210,11 +239,12 @@
   <tabstop>txtEditorial</tabstop>
   <tabstop>txtAno</tabstop>
   <tabstop>txtLugar</tabstop>
+  <tabstop>txtLengua</tabstop>
+  <tabstop>txtLocalizacion</tabstop>
   <tabstop>btAnadirAutor</tabstop>
   <tabstop>btQuitarAutor</tabstop>
   <tabstop>btAnadirCategoria</tabstop>
   <tabstop>btQuitarCategoria</tabstop>
-  <tabstop>txtLocalizacion</tabstop>
   <tabstop>btCancelar</tabstop>
   <tabstop>btOK</tabstop>
   <tabstop>lwCategorias</tabstop>
