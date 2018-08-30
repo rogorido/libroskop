@@ -23,6 +23,7 @@ CREATE TABLE IF NOT EXISTS `libro` (
 	`editorial`	TEXT,
 	`lugar`	TEXT,
 	`fecha`	TEXT,
+	`lengua` TEXT,
 	`localizacion`	TEXT
 );
 DROP TABLE IF EXISTS `categorias`;
