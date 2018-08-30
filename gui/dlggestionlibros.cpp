@@ -42,6 +42,8 @@ dlgGestionLibros::dlgGestionLibros(QWidget *parent) :
     if (index.isValid()) {
         ui->tvLibros->setCurrentIndex(index);
     }
+
+    ui->lblTotal->setText(QString("Total: %1").arg(m_libros->rowCount()));
 }
 
 dlgGestionLibros::~dlgGestionLibros()
@@ -52,16 +54,21 @@ dlgGestionLibros::~dlgGestionLibros()
 void dlgGestionLibros::on_rbUniversidad_clicked()
 {
     m_libros->setQuery(sql_universidad);
+    ui->lblTotal->setText(QString("Total: %1").arg(m_libros->rowCount()));
 }
 
 void dlgGestionLibros::on_rbTodos_clicked()
 {
+
     m_libros->setQuery(sql_general);
+    ui->lblTotal->setText(QString("Total: %1").arg(m_libros->rowCount()));
 }
 
 void dlgGestionLibros::on_rbEmbajada_clicked()
 {
     m_libros->setQuery(sql_embajada);
+
+    ui->lblTotal->setText(QString("Total: %1").arg(m_libros->rowCount()));
 }
 
 void dlgGestionLibros::on_pbBorrar_clicked()
