@@ -24,7 +24,7 @@ MainWindow::MainWindow(QWidget *parent) :
     db.setDatabaseName(home + QString("/libros.db"));
 
     if (db.open())
-        qDebug() << "DB abierta, paspanín!";
+        qDebug() << trUtf8("DB abierta, paspanín!");
 
     connect(ui->actionNuevoLibro, SIGNAL(triggered(bool)), this, SLOT(crearNuevoLibro()));
 }

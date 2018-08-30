@@ -18,12 +18,12 @@ dlgGestionLibros::dlgGestionLibros(QWidget *parent) :
 
     m_libros = new QSqlQueryModel(this);
     m_libros->setQuery(sql_general);
-    m_libros->setHeaderData(1, Qt::Horizontal, "Título");
-    m_libros->setHeaderData(2, Qt::Horizontal, "Subtítulo");
-    m_libros->setHeaderData(3, Qt::Horizontal, "Editorial");
-    m_libros->setHeaderData(4, Qt::Horizontal, "Lugar");
-    m_libros->setHeaderData(5, Qt::Horizontal, "Fecha");
-    m_libros->setHeaderData(6, Qt::Horizontal, "Localización");
+    m_libros->setHeaderData(1, Qt::Horizontal, trUtf8("Título"));
+    m_libros->setHeaderData(2, Qt::Horizontal, trUtf8("Subtítulo"));
+    m_libros->setHeaderData(3, Qt::Horizontal, trUtf8("Editorial"));
+    m_libros->setHeaderData(4, Qt::Horizontal, trUtf8("Lugar"));
+    m_libros->setHeaderData(5, Qt::Horizontal, trUtf8("Fecha"));
+    m_libros->setHeaderData(6, Qt::Horizontal, trUtf8("Localización"));
 
     ui->tvLibros->setModel(m_libros);
     ui->tvLibros->hideColumn(0); // la id

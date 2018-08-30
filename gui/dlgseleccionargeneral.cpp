@@ -40,11 +40,11 @@ void dlgSeleccionarGeneral::cargarTipo(){
     switch (tipo_dialogo) {
     case 0:{
         sql_general = "SELECT * FROM autores ORDER BY apellido";
-        ui->btAnadir->setText("Añadir autor");
+        ui->btAnadir->setText(trUtf8("Añadir autor"));
         break;}
     case 1:{
         sql_general = "SELECT * FROM categorias ORDER BY categoria";
-        ui->btAnadir->setText("Añadir categoría");
+        ui->btAnadir->setText(trUtf8("Añadir categoría"));
         break;}
     default:
         break;
