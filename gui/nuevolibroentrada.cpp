@@ -62,22 +62,24 @@ void NuevoLibroEntrada::aceptarLibro()
     QString editorial = ui->txtEditorial->text();
     QString year = ui->txtAno->text();
     QString lugar = ui->txtLugar->text();
+    QString lengua = ui->txtLengua->text();
     QString localizacion = ui->txtLocalizacion->text();
 
-    query.prepare("INSERT INTO libro(titulo, subtitulo, editorial, lugar, fecha, localizacion) "
-                  "VALUES(:titulo, :subtitulo, :editorial, :lugar, :fecha, :localizacion)");
+    query.prepare("INSERT INTO libro(titulo, subtitulo, editorial, lugar, fecha, lengua, localizacion) "
+                  "VALUES(:titulo, :subtitulo, :editorial, :lugar, :fecha, :lengua, :localizacion)");
     query.bindValue(":titulo", titulo);
     query.bindValue(":subtitulo", subtitulo);
     query.bindValue(":editorial", editorial);
     query.bindValue(":lugar", lugar);
     query.bindValue(":fecha", year);
+    query.bindValue(":lengua", lengua);
     query.bindValue(":localizacion", localizacion);
 
     if (!query.exec()){
         qDebug() << query.lastError();
     }
     else {
-        qDebug() << "libro introducido con éxito!";
+        qDebug() << trUtf8("libro introducido con éxito!");
         query.exec("SELECT seq FROM sqlite_sequence WHERE name='libro'");
         query.first();
         int ultimolibro_id = query.value(0).toInt();
@@ -172,6 +174,7 @@ void NuevoLibroEntrada::borrarCampos()
     ui->txtEditorial->setText("");
     ui->txtAno->setText("");
     ui->txtLugar->setText("");
+    ui->txtLengua->setText("");
     ui->txtLocalizacion->setText("");
 
     autores.clear();
