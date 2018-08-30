@@ -44,7 +44,6 @@ void dlgGestionLibros::on_rbEmbajada_clicked()
 
 void dlgGestionLibros::on_pbBorrar_clicked()
 {
-    QSqlQuery query;
     QModelIndex idx = ui->tvLibros->currentIndex();
 
     if (!idx.isValid())
@@ -58,9 +57,22 @@ void dlgGestionLibros::on_pbBorrar_clicked()
         QModelIndex idx2 = m_libros->index(row, 0);
         int libro_id = m_libros->data(idx2, Qt::DisplayRole).toInt();
         qDebug() << "el id del libro es: " << libro_id;
-        if (!query.exec(QString("DELETE FROM libro WHERE libro_id=%1").arg(libro_id)))
-            qDebug() << "fallido";
-
+        borrarLibro(libro_id);
     }
+
+}
+
+void dlgGestionLibros::borrarLibro(int id)
+{
+    QSqlQuery query;
+
+    if (!query.exec(QString("DELETE FROM libros_autores WHERE libro_id=%1").arg(id)))
+        qDebug() << "fallido borrado de libros_autores";
+
+    if (!query.exec(QString("DELETE FROM libros_categorias WHERE libro_id=%1").arg(id)))
+        qDebug() << "fallido borrado de libros_categorias";
+
+    if (!query.exec(QString("DELETE FROM libro WHERE libro_id=%1").arg(id)))
+        qDebug() << "fallido borrado de libros";
 
 }

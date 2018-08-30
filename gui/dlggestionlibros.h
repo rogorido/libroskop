@@ -19,12 +19,11 @@ public:
 
 private slots:
     void on_rbUniversidad_clicked();
-
     void on_rbTodos_clicked();
-
     void on_rbEmbajada_clicked();
-
     void on_pbBorrar_clicked();
+
+    void borrarLibro(int id);
 
 private:
     Ui::dlgGestionLibros *ui;

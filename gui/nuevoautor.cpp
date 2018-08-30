@@ -13,6 +13,8 @@ NuevoAutor::NuevoAutor(QWidget *parent) :
 
     connect(ui->btOK, SIGNAL(clicked(bool)), SLOT(aceptarNuevoAutor()));
     connect(ui->btCancelar, SIGNAL(clicked(bool)), SLOT(cerrar()));
+
+    ui->txtNombre->setFocus();
 }
 
 NuevoAutor::~NuevoAutor()

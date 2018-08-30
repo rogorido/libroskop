@@ -76,7 +76,7 @@ void NuevoLibroEntrada::aceptarLibro()
         qDebug() << query.lastError();
     }
     else {
-        qDebug() << "geschafft";
+        qDebug() << "libro introducido con éxito!";
         query.exec("SELECT seq FROM sqlite_sequence WHERE name='libro'");
         query.first();
         int ultimolibro_id = query.value(0).toInt();
