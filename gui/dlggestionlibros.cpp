@@ -20,6 +20,21 @@ dlgGestionLibros::dlgGestionLibros(QWidget *parent) :
     m_libros->setQuery(sql_general);
     ui->tvLibros->setModel(m_libros);
     ui->tvLibros->hideColumn(0); // la id
+
+    ui->tvLibros->setAlternatingRowColors(true);
+    //ui->twResoluciones->setColumnWidth(1, 80);
+    ui->tvLibros->resizeColumnsToContents();
+    ui->tvLibros->resizeRowsToContents();
+    ui->tvLibros->horizontalHeader()->setStretchLastSection(true);
+    ui->tvLibros->setSortingEnabled(true);
+    ui->tvLibros->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tvLibros->setSelectionMode(QAbstractItemView::SingleSelection);
+
+    // escogemos la primera línea del modelo...
+    QModelIndex index = m_libros->index(0,0);
+    if (index.isValid()) {
+        ui->tvLibros->setCurrentIndex(index);
+    }
 }
 
 dlgGestionLibros::~dlgGestionLibros()
