@@ -14,7 +14,7 @@ class dlgGestionLibros : public QWidget
     Q_OBJECT
 
 public:
-    explicit dlgGestionLibros(QWidget *parent = nullptr);
+    explicit dlgGestionLibros(QWidget *parent = 0);
     ~dlgGestionLibros();
 
 private slots:
