@@ -31,7 +31,7 @@ dlgGestionLibros::dlgGestionLibros(QWidget *parent) :
     ui->tvLibros->setAlternatingRowColors(true);
     //ui->twResoluciones->setColumnWidth(1, 80);
     ui->tvLibros->resizeColumnsToContents();
-    ui->tvLibros->resizeRowsToContents();
+    //ui->tvLibros->resizeRowsToContents();
     //ui->tvLibros->horizontalHeader()->setStretchLastSection(true);
     ui->tvLibros->setSortingEnabled(true);
     ui->tvLibros->setSelectionBehavior(QAbstractItemView::SelectRows);
