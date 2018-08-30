@@ -95,6 +95,6 @@ void MainWindow::on_actionLibros_triggered()
 {
     dlggestionlibros = new dlgGestionLibros(this);
     QMdiSubWindow *window = ui->mdiArea->addSubWindow(dlggestionlibros);
-    window->show();
+    window->showMaximized();
 
 }

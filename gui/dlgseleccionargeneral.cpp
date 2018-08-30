@@ -154,7 +154,7 @@ void dlgSeleccionarGeneral::autor(){
     QString nombre = m_objeto->data(m_objeto_proxy->mapToSource(idx1), Qt::DisplayRole).toString();
     QString apellido = m_objeto->data(m_objeto_proxy->mapToSource(idx2), Qt::DisplayRole).toString();
 
-    QString nombrecompleto = apellido + QString(', ') + nombre;
+    QString nombrecompleto = apellido + QString(",  ") + nombre;
 
     autorescogido.id = id;
     autorescogido.elemento = nombrecompleto;
