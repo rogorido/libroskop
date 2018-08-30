@@ -215,15 +215,3 @@ void dlgSeleccionarGeneral::actualizarCategorias(){
     actualizarObjeto();
 
 }
-
-/*
-
-void dlgSeleccionarGeneral::comprobarVacio()
-{
-    if (m_objeto->rowCount() == 0){
-        qDebug() << "cerrando...";
-        close();
-    }
-}
-
-*/
