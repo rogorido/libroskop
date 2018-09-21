@@ -27,7 +27,8 @@ dlgGestionLibros::dlgGestionLibros(QWidget *parent) :
     m_libros->setHeaderData(3, Qt::Horizontal, trUtf8("Editorial"));
     m_libros->setHeaderData(4, Qt::Horizontal, trUtf8("Lugar"));
     m_libros->setHeaderData(5, Qt::Horizontal, trUtf8("Fecha"));
-    m_libros->setHeaderData(6, Qt::Horizontal, trUtf8("Localización"));
+    m_libros->setHeaderData(6, Qt::Horizontal, trUtf8("Lengua"));
+    m_libros->setHeaderData(7, Qt::Horizontal, trUtf8("Localización"));
 
     m_libros_proxy = new QSortFilterProxyModel(this);
     m_libros_proxy->setSourceModel(m_libros);
