@@ -111,6 +111,6 @@ void MainWindow::on_actionLibros_triggered()
     connect(dlggestionlibros, SIGNAL(modificarLibro(int)), this, SLOT(modificarLibro(int)));
     QMdiSubWindow *window = ui->mdiArea->addSubWindow(dlggestionlibros);
 
-    window->showMaximized();
+    window->show();
 
 }
