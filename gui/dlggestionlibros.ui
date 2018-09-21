@@ -35,7 +35,7 @@
         <item>
          <widget class="QRadioButton" name="rbUniversidad">
           <property name="text">
-           <string>Universidad</string>
+           <string>Biblioteca</string>
           </property>
          </widget>
         </item>
@@ -43,6 +43,20 @@
          <widget class="QRadioButton" name="rbEmbajada">
           <property name="text">
            <string>Embajada</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QRadioButton" name="rbDespacho">
+          <property name="text">
+           <string>Despacho</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QRadioButton" name="rbDigital">
+          <property name="text">
+           <string>Digital</string>
           </property>
          </widget>
         </item>

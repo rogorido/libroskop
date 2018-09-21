@@ -26,6 +26,10 @@ private slots:
     void borrarLibro(int id);
     void actualizarLabelTotales();
 
+    void on_rbDespacho_clicked();
+
+    void on_rbDigital_clicked();
+
 private:
     Ui::dlgGestionLibros *ui;
 

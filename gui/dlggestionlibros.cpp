@@ -7,8 +7,11 @@
 #include <QDebug>
 
 const QString sql_general = "SELECT * FROM libro";
-const QString sql_universidad = "SELECT * FROM libro WHERE localizacion='Universidad'";
+const QString sql_universidad = "SELECT * FROM libro WHERE localizacion='Biblioteca'";
 const QString sql_embajada = "SELECT * FROM libro WHERE localizacion='Embajada'";
+const QString sql_despacho = "SELECT * FROM libro WHERE localizacion='Despacho'";
+const QString sql_digital = "SELECT * FROM libro WHERE localizacion='Digital'";
+
 
 dlgGestionLibros::dlgGestionLibros(QWidget *parent) :
     QWidget(parent),
@@ -112,5 +115,19 @@ void dlgGestionLibros::borrarLibro(int id)
 void dlgGestionLibros::actualizarLabelTotales()
 {
     ui->lblTotal->setText(QString("Total: %1").arg(m_libros->rowCount()));
+
+}
+
+void dlgGestionLibros::on_rbDespacho_clicked()
+{
+    m_libros->setQuery(sql_despacho);
+    sql_activa = sql_embajada;
+
+}
+
+void dlgGestionLibros::on_rbDigital_clicked()
+{
+    m_libros->setQuery(sql_digital);
+    sql_activa = sql_embajada;
 
 }
