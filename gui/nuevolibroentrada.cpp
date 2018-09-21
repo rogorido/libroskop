@@ -62,6 +62,7 @@ void NuevoLibroEntrada::cerrar()
 void NuevoLibroEntrada::aceptarLibro()
 {
     QSqlQuery query;
+    int ultimolibro_id;
 
     QString titulo = ui->txtTitulo->text();
     QString subtitulo = ui->txtSubtitulo->text();
@@ -71,8 +72,18 @@ void NuevoLibroEntrada::aceptarLibro()
     QString lengua = ui->txtLengua->text();
     QString localizacion = ui->txtLocalizacion->text();
 
-    query.prepare("INSERT INTO libro(titulo, subtitulo, editorial, lugar, fecha, lengua, localizacion) "
-                  "VALUES(:titulo, :subtitulo, :editorial, :lugar, :fecha, :lengua, :localizacion)");
+    // Primero hacemos el caso de que sea libro nuevo...
+
+    if (!modificando) {
+        query.prepare("INSERT INTO libro(titulo, subtitulo, editorial, lugar, fecha, lengua, localizacion) "
+                      "VALUES(:titulo, :subtitulo, :editorial, :lugar, :fecha, :lengua, :localizacion)");
+         }
+    else {
+        query.prepare("UPDATE libro SET titulo = :titulo, subtitulo = :subtitulo, editorial = :editorial, "
+                      "lugar = :lugar, fecha = :fecha, lengua = :lengua, localizacion = :localizacion "
+                      "WHERE libro_id = :id");
+         }
+
     query.bindValue(":titulo", titulo);
     query.bindValue(":subtitulo", subtitulo);
     query.bindValue(":editorial", editorial);
@@ -81,17 +92,33 @@ void NuevoLibroEntrada::aceptarLibro()
     query.bindValue(":lengua", lengua);
     query.bindValue(":localizacion", localizacion);
 
+    if (modificando)
+        query.bindValue(":id", libro_modificandi);
+
     if (!query.exec()){
         qDebug() << query.lastError();
     }
     else {
-        qDebug() << trUtf8("libro introducido con éxito!");
-        query.exec("SELECT seq FROM sqlite_sequence WHERE name='libro'");
-        query.first();
-        int ultimolibro_id = query.value(0).toInt();
+        if (modificando)
+            qDebug() << trUtf8("libro modificado con éxito!");
+        else
+            qDebug() << trUtf8("libro introducido con éxito!");
+
+        if (!modificando) {
+            query.exec("SELECT seq FROM sqlite_sequence WHERE name='libro'");
+            query.first();
+            ultimolibro_id = query.value(0).toInt();
+        }
+        else
+            ultimolibro_id = libro_modificandi;
+
         introducirAutores(ultimolibro_id);
         introducirCategorias(ultimolibro_id);
-        borrarCampos();
+
+        if (!modificando)
+            borrarCampos();
+        else
+            parentWidget()->close();
     }
 }
 
@@ -148,6 +175,12 @@ void NuevoLibroEntrada::quitarCategoria()
 void NuevoLibroEntrada::introducirAutores(int id)
 {
     QSqlQuery query;
+    QString sql;
+
+    sql = QString("DELETE FROM libros_autores WHERE libro_id = %1").arg(id);
+
+    if (modificando)
+        query.exec(sql);
 
     for (int var = 0; var < autores.size(); ++var) {
         query.prepare("INSERT INTO libros_autores(libro_id, autor_id) VALUES(:libro_id, :autor_id)");
@@ -162,6 +195,12 @@ void NuevoLibroEntrada::introducirAutores(int id)
 void NuevoLibroEntrada::introducirCategorias(int id)
 {
     QSqlQuery query;
+    QString sql;
+
+    sql = QString("DELETE FROM libros_categorias WHERE libro_id = %1").arg(id);
+
+    if (modificando)
+        query.exec(sql);
 
     for (int var = 0; var < categorias.size(); ++var) {
         query.prepare("INSERT INTO libros_categorias(libro_id, categoria_id) VALUES(:libro_id, :categoria_id)");
