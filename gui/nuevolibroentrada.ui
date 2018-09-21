@@ -10,6 +10,12 @@
     <height>446</height>
    </rect>
   </property>
+  <property name="maximumSize">
+   <size>
+    <width>650</width>
+    <height>446</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>Introducir nuevo libro</string>
   </property>
