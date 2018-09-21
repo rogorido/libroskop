@@ -210,7 +210,7 @@ void NuevoLibroEntrada::cargarModelos()
     c_lenguas->setCaseSensitivity(Qt::CaseInsensitive);
     ui->txtLengua->setCompleter(c_lenguas);
 
-    m_localizaciones << "Universidad" << "Embajada";
+    m_localizaciones << "Universidad" << "Embajada" << "Despacho" << "Digital";
     c_localizaciones = new QCompleter(m_localizaciones, this);
     c_localizaciones->setCaseSensitivity(Qt::CaseInsensitive);
     ui->txtLocalizacion->setCompleter(c_localizaciones);
