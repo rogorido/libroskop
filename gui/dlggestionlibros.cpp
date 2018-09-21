@@ -2,6 +2,7 @@
 #include "ui_dlggestionlibros.h"
 
 #include <QSqlQuery>
+#include <QSortFilterProxyModel>
 #include <QSqlQueryModel>
 #include <QMessageBox>
 #include <QDebug>
@@ -28,7 +29,10 @@ dlgGestionLibros::dlgGestionLibros(QWidget *parent) :
     m_libros->setHeaderData(5, Qt::Horizontal, trUtf8("Fecha"));
     m_libros->setHeaderData(6, Qt::Horizontal, trUtf8("Localización"));
 
-    ui->tvLibros->setModel(m_libros);
+    m_libros_proxy = new QSortFilterProxyModel(this);
+    m_libros_proxy->setSourceModel(m_libros);
+
+    ui->tvLibros->setModel(m_libros_proxy);
     ui->tvLibros->hideColumn(0); // la id
 
     ui->tvLibros->setAlternatingRowColors(true);

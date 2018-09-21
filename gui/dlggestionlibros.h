@@ -4,6 +4,7 @@
 #include <QWidget>
 
 class QSqlQueryModel;
+class QSortFilterProxyModel;
 
 namespace Ui {
 class dlgGestionLibros;
@@ -34,6 +35,7 @@ private:
     Ui::dlgGestionLibros *ui;
 
     QSqlQueryModel *m_libros;
+    QSortFilterProxyModel *m_libros_proxy;
 
     QString sql_activa;
 };
