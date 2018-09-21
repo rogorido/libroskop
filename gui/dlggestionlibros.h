@@ -19,17 +19,21 @@ public:
     ~dlgGestionLibros();
 
 private slots:
+    // GUI
     void on_rbUniversidad_clicked();
     void on_rbTodos_clicked();
     void on_rbEmbajada_clicked();
     void on_pbBorrar_clicked();
+    void on_rbDespacho_clicked();
+    void on_rbDigital_clicked();
+    void on_pbEditar_clicked();
 
     void borrarLibro(int id);
     void actualizarLabelTotales();
 
-    void on_rbDespacho_clicked();
+signals:
 
-    void on_rbDigital_clicked();
+    void modificarLibro(int id);
 
 private:
     Ui::dlgGestionLibros *ui;

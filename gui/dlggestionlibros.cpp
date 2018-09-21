@@ -136,3 +136,29 @@ void dlgGestionLibros::on_rbDigital_clicked()
     sql_activa = sql_embajada;
 
 }
+
+void dlgGestionLibros::on_pbEditar_clicked()
+{
+    /*
+     * Joder esto es un puot lío... necesito tanto puto idx?
+     */
+
+    // esto entiendo que coge el índice del tableview...
+    QModelIndex idx = ui->tvLibros->currentIndex();
+    if (!idx.isValid())
+        return;
+
+    // de ahí coge el índice del model que subyace (que es un qsortfilteretc)...
+    QModelIndex idx2 = idx.model()->index(idx.row(), 0);
+    if (!idx2.isValid())
+        return;
+
+    // y eso lo mapea al original.
+    QModelIndex idx3 = m_libros_proxy->mapToSource(idx2);
+    if (!idx3.isValid())
+        return;
+
+    int libro_id = m_libros->data(idx3, Qt::DisplayRole).toInt();
+
+    emit(modificarLibro(libro_id));
+}

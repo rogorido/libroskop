@@ -48,6 +48,8 @@ public slots:
     void seleccionarCategoria();
     void anadirCategoria();
 
+    void modificarLibro(int id);
+
 private slots:
     void on_actionSalir_triggered();
     void crearNuevoLibro();

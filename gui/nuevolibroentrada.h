@@ -17,7 +17,7 @@ class NuevoLibroEntrada : public QWidget
     Q_OBJECT
 
 public:
-    explicit NuevoLibroEntrada(QWidget *parent = 0);
+    explicit NuevoLibroEntrada(int libro_id, QWidget *parent = 0);
     ~NuevoLibroEntrada();
 
 public slots:
@@ -49,6 +49,9 @@ signals:
 private:
     Ui::NuevoLibroEntrada *ui;
 
+    bool modificando = false;
+    int libro_modificandi = 0;
+
     QList<elementopareado> autores;
     QList<elementopareado> categorias;
 
@@ -66,6 +69,11 @@ private:
 
     QStringList m_localizaciones;
     QCompleter *c_localizaciones;
+
+    /*
+     * Para el caso de que estemos modificando uno existente
+     */
+    void cargarLibro();
 };
 
 #endif // NUEVOLIBROENTRADA_H

@@ -82,6 +82,15 @@ void MainWindow::anadirCategoria()
 
 }
 
+void MainWindow::modificarLibro(int id)
+{
+    dlgnuevolibro = new NuevoLibroEntrada(id, this); // 0 es para un libro nuevo
+    connect(dlgnuevolibro, SIGNAL(seleccionarAutorSignal()), this, SLOT(seleccionarAutor()));
+    connect(dlgnuevolibro, SIGNAL(seleccionarCategoriaSignal()), this, SLOT(seleccionarCategoria()));
+    QMdiSubWindow *window = ui->mdiArea->addSubWindow(dlgnuevolibro);
+    window->show();
+}
+
 void MainWindow::on_actionSalir_triggered()
 {
     qApp->quit();
@@ -89,7 +98,7 @@ void MainWindow::on_actionSalir_triggered()
 
 void MainWindow::crearNuevoLibro()
 {
-    dlgnuevolibro = new NuevoLibroEntrada(this);
+    dlgnuevolibro = new NuevoLibroEntrada(0, this); // 0 es para un libro nuevo
     connect(dlgnuevolibro, SIGNAL(seleccionarAutorSignal()), this, SLOT(seleccionarAutor()));
     connect(dlgnuevolibro, SIGNAL(seleccionarCategoriaSignal()), this, SLOT(seleccionarCategoria()));
     QMdiSubWindow *window = ui->mdiArea->addSubWindow(dlgnuevolibro);
@@ -99,7 +108,9 @@ void MainWindow::crearNuevoLibro()
 void MainWindow::on_actionLibros_triggered()
 {
     dlggestionlibros = new dlgGestionLibros(this);
+    connect(dlggestionlibros, SIGNAL(modificarLibro(int)), this, SLOT(modificarLibro(int)));
     QMdiSubWindow *window = ui->mdiArea->addSubWindow(dlggestionlibros);
+
     window->showMaximized();
 
 }

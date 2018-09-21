@@ -84,6 +84,17 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_3">
      <item>
+      <widget class="QPushButton" name="pbEditar">
+       <property name="text">
+        <string>Editar</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../icons.qrc">
+         <normaloff>:/icons/icons/authy.png</normaloff>:/icons/icons/authy.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="pbBorrar">
        <property name="text">
         <string>Borrar</string>

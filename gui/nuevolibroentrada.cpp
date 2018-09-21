@@ -12,7 +12,7 @@ const QString sql_editoriales = "SELECT DISTINCT editorial FROM libro ORDER BY e
 const QString sql_lugares = "SELECT DISTINCT lugar FROM libro ORDER BY lugar";
 const QString sql_lenguas = "SELECT DISTINCT lengua FROM libro ORDER BY lengua";
 
-NuevoLibroEntrada::NuevoLibroEntrada(QWidget *parent) :
+NuevoLibroEntrada::NuevoLibroEntrada(int libro_id, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::NuevoLibroEntrada)
 {
@@ -26,6 +26,12 @@ NuevoLibroEntrada::NuevoLibroEntrada(QWidget *parent) :
     connect(ui->btQuitarAutor, SIGNAL(clicked(bool)), this, SLOT(quitarAutor()));
     connect(ui->btAnadirCategoria, SIGNAL(clicked(bool)), this, SLOT(anadirCategoria()));
     connect(ui->btQuitarCategoria, SIGNAL(clicked(bool)), this, SLOT(quitarCategoria()));
+
+    if (libro_id != 0) {
+        libro_modificandi = libro_id;
+        modificando = true;
+        cargarLibro();
+    }
 }
 
 NuevoLibroEntrada::~NuevoLibroEntrada()
@@ -210,9 +216,23 @@ void NuevoLibroEntrada::cargarModelos()
     c_lenguas->setCaseSensitivity(Qt::CaseInsensitive);
     ui->txtLengua->setCompleter(c_lenguas);
 
-    m_localizaciones << "Universidad" << "Embajada" << "Despacho" << "Digital";
+    m_localizaciones << "Biblioteca" << "Embajada" << "Despacho" << "Digital";
     c_localizaciones = new QCompleter(m_localizaciones, this);
     c_localizaciones->setCaseSensitivity(Qt::CaseInsensitive);
     ui->txtLocalizacion->setCompleter(c_localizaciones);
 
+}
+
+void NuevoLibroEntrada::cargarLibro()
+{
+    QSqlQuery query;
+    QString sql;
+
+    sql = QString("SELECT * FROM libro WHERE libro_id = %1").arg(libro_modificandi);
+    if (!query.exec(sql))
+        qDebug() << query.lastError();
+
+    query.first();
+
+    ui->txtTitulo->setText(query.value(1).toString());
 }
