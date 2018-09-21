@@ -6,3 +6,5 @@ moc_*
 libroskop
 *.stash
 *.db
+ui_*
+qrc_icons.cpp
