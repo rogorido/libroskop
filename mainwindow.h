@@ -7,6 +7,7 @@
 
 class NuevoLibroEntrada;
 class NuevoAutor;
+class NuevaCategoria;
 class dlgSeleccionarGeneral;
 class dlgGestionLibros;
 
@@ -60,6 +61,7 @@ private:
     dlgSeleccionarGeneral *dlgseleccionar;
     NuevoLibroEntrada *dlgnuevolibro;
     NuevoAutor *dlgnuevoautor;
+    NuevaCategoria *dlgnuevacategoria;
     dlgGestionLibros *dlggestionlibros;
 };
 

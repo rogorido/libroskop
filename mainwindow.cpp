@@ -8,6 +8,7 @@
 
 #include "gui/nuevolibroentrada.h"
 #include "gui/nuevoautor.h"
+#include "gui/nuevacategoria.h"
 #include "gui/dlgseleccionargeneral.h"
 #include "gui/dlggestionlibros.h"
 
@@ -74,6 +75,10 @@ void MainWindow::seleccionarCategoria()
 
 void MainWindow::anadirCategoria()
 {
+    dlgnuevacategoria = new NuevaCategoria(this);
+    connect(dlgnuevacategoria, SIGNAL(nuevaCategoriaAceptadaSignal()), dlgseleccionar, SLOT(actualizarCategorias()));
+    QMdiSubWindow *window = ui->mdiArea->addSubWindow(dlgnuevacategoria);
+    window->show();
 
 }
 
