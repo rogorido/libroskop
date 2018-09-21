@@ -12,7 +12,7 @@ class NuevaCategoria : public QWidget
     Q_OBJECT
 
 public:
-    explicit NuevaCategoria(QWidget *parent = nullptr);
+    explicit NuevaCategoria(QWidget *parent = 0);
     ~NuevaCategoria();
 
 private slots:
