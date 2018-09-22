@@ -6,6 +6,6 @@ Type=Application
 Terminal=false
 Comment=Libroskop base de datos del davidiano
 Name=Libroskop
-GenericName=eclipse-4.4 M4
+GenericName=Libroskop
 StartupNotify=true
 Categories=Education
