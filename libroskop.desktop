@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Exec=/home/david/git/libroskop/libroskop
+Icon=/home/david/git/libroskop/icons/biblioteca.png
+Type=Application
+Terminal=false
+Comment=Libroskop base de datos del davidiano
+Name=Libroskop
+GenericName=eclipse-4.4 M4
+StartupNotify=true
+Categories=Education
