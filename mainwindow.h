@@ -43,6 +43,7 @@ public slots:
      */
 
     void seleccionarAutor();
+    void seleccionarEditor();
     void anadirAutor();
 
     void seleccionarCategoria();

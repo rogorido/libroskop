@@ -24,6 +24,8 @@ NuevoLibroEntrada::NuevoLibroEntrada(int libro_id, QWidget *parent) :
     connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(cerrar()));
     connect(ui->btAnadirAutor, SIGNAL(clicked(bool)), this, SLOT(anadirAutor()));
     connect(ui->btQuitarAutor, SIGNAL(clicked(bool)), this, SLOT(quitarAutor()));
+    connect(ui->btAnadirEditor, SIGNAL(clicked(bool)), this, SLOT(anadirEditor()));
+    connect(ui->btQuitarEditor, SIGNAL(clicked(bool)), this, SLOT(quitarEditor()));
     connect(ui->btAnadirCategoria, SIGNAL(clicked(bool)), this, SLOT(anadirCategoria()));
     connect(ui->btQuitarCategoria, SIGNAL(clicked(bool)), this, SLOT(quitarCategoria()));
 
@@ -44,6 +46,14 @@ void NuevoLibroEntrada::recibirAutor(elementopareado autor)
     autores.append(autor);
 
     QListWidgetItem *item = new QListWidgetItem(autor.elemento, ui->lwAutores);
+
+}
+
+void NuevoLibroEntrada::recibirEditor(elementopareado editor)
+{
+    editores.append(editor);
+
+    QListWidgetItem *item = new QListWidgetItem(editor.elemento, ui->lwEditores);
 
 }
 
@@ -113,6 +123,7 @@ void NuevoLibroEntrada::aceptarLibro()
             ultimolibro_id = libro_modificandi;
 
         introducirAutores(ultimolibro_id);
+        introducirEditores(ultimolibro_id);
         introducirCategorias(ultimolibro_id);
 
         if (!modificando)
@@ -144,6 +155,31 @@ void NuevoLibroEntrada::quitarAutor()
     }
 
     ui->lwAutores->takeItem(ui->lwAutores->currentRow());
+
+}
+
+void NuevoLibroEntrada::anadirEditor()
+{
+    emit(seleccionarEditorSignal());
+}
+
+void NuevoLibroEntrada::quitarEditor()
+{
+    QModelIndex idx = ui->lwEditores->currentIndex();
+
+    if (!idx.isValid())
+        return;
+
+    QString editorescogido = idx.data().toString();
+
+    for (int var = 0; var < editores.size(); ++var) {
+        if (editores.at(var).elemento == editorescogido) {
+            editores.removeAt(var);
+            break;
+        }
+    }
+
+    ui->lwEditores->takeItem(ui->lwEditores->currentRow());
 
 }
 
@@ -192,6 +228,26 @@ void NuevoLibroEntrada::introducirAutores(int id)
 
 }
 
+void NuevoLibroEntrada::introducirEditores(int id)
+{
+    QSqlQuery query;
+    QString sql;
+
+    sql = QString("DELETE FROM libros_editores WHERE libro_id = %1").arg(id);
+
+    if (modificando)
+        query.exec(sql);
+
+    for (int var = 0; var < editores.size(); ++var) {
+        query.prepare("INSERT INTO libros_editores(libro_id, editor_id) VALUES(:libro_id, :editor_id)");
+        query.bindValue(":libro_id", id);
+        query.bindValue(":editor_id", editores.at(var).id);
+        if (!query.exec())
+            qDebug() << query.lastError();
+    }
+
+}
+
 void NuevoLibroEntrada::introducirCategorias(int id)
 {
     QSqlQuery query;
@@ -223,9 +279,11 @@ void NuevoLibroEntrada::borrarCampos()
     ui->txtLocalizacion->setText("");
 
     autores.clear();
+    editores.clear();
     categorias.clear();
 
     ui->lwAutores->clear();
+    ui->lwEditores->clear();
     ui->lwCategorias->clear();
 
     ui->txtTitulo->setFocus();

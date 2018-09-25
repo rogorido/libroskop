@@ -23,6 +23,7 @@ public:
 public slots:
 
     void recibirAutor(elementopareado autor);
+    void recibirEditor(elementopareado editor);
     void recibirCategoria(elementopareado categoria);
 
 private slots:
@@ -31,11 +32,14 @@ private slots:
     void aceptarLibro();
     void anadirAutor();
     void quitarAutor();
+    void anadirEditor();
+    void quitarEditor();
     void anadirCategoria();
     void quitarCategoria();
 
     // esto se activa en caso de que el libro se meta bien en la db
     void introducirAutores(int id);
+    void introducirEditores(int id);
     void introducirCategorias(int id);
 
     void borrarCampos();
@@ -44,6 +48,7 @@ private slots:
 signals:
 
     void seleccionarAutorSignal();
+    void seleccionarEditorSignal();
     void seleccionarCategoriaSignal();
 
 private:
@@ -53,6 +58,7 @@ private:
     int libro_modificandi = 0;
 
     QList<elementopareado> autores;
+    QList<elementopareado> editores;
     QList<elementopareado> categorias;
 
     QSqlQueryModel *m_editoriales;

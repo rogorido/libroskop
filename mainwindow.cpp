@@ -54,6 +54,16 @@ void MainWindow::seleccionarAutor()
 
 }
 
+void MainWindow::seleccionarEditor()
+{
+    dlgseleccionar = new dlgSeleccionarGeneral(0, this);
+    connect(dlgseleccionar, SIGNAL(autorEscogidoSignal(elementopareado)), dlgnuevolibro, SLOT(recibirEditor(elementopareado)));
+    connect(dlgseleccionar, SIGNAL(anadirNuevoAutorSignal()), this, SLOT(anadirAutor()));
+    QMdiSubWindow *window = ui->mdiArea->addSubWindow(dlgseleccionar);
+    window->show();
+
+}
+
 void MainWindow::anadirAutor()
 {
     dlgnuevoautor = new NuevoAutor(this);
@@ -86,6 +96,7 @@ void MainWindow::modificarLibro(int id)
 {
     dlgnuevolibro = new NuevoLibroEntrada(id, this); // 0 es para un libro nuevo
     connect(dlgnuevolibro, SIGNAL(seleccionarAutorSignal()), this, SLOT(seleccionarAutor()));
+    connect(dlgnuevolibro, SIGNAL(seleccionarEditorSignal()), this, SLOT(seleccionarEditor()));
     connect(dlgnuevolibro, SIGNAL(seleccionarCategoriaSignal()), this, SLOT(seleccionarCategoria()));
     QMdiSubWindow *window = ui->mdiArea->addSubWindow(dlgnuevolibro);
     window->show();
@@ -100,6 +111,7 @@ void MainWindow::crearNuevoLibro()
 {
     dlgnuevolibro = new NuevoLibroEntrada(0, this); // 0 es para un libro nuevo
     connect(dlgnuevolibro, SIGNAL(seleccionarAutorSignal()), this, SLOT(seleccionarAutor()));
+    connect(dlgnuevolibro, SIGNAL(seleccionarEditorSignal()), this, SLOT(seleccionarEditor()));
     connect(dlgnuevolibro, SIGNAL(seleccionarCategoriaSignal()), this, SLOT(seleccionarCategoria()));
     QMdiSubWindow *window = ui->mdiArea->addSubWindow(dlgnuevolibro);
     window->show();
