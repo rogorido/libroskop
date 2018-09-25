@@ -46,7 +46,7 @@ void NuevoLibroEntrada::recibirAutor(elementopareado autor)
     autores.append(autor);
 
     QListWidgetItem *item = new QListWidgetItem(autor.elemento, ui->lwAutores);
-
+    Q_UNUSED(item)
 }
 
 void NuevoLibroEntrada::recibirEditor(elementopareado editor)
@@ -54,6 +54,7 @@ void NuevoLibroEntrada::recibirEditor(elementopareado editor)
     editores.append(editor);
 
     QListWidgetItem *item = new QListWidgetItem(editor.elemento, ui->lwEditores);
+    Q_UNUSED(item)
 
 }
 
@@ -62,6 +63,7 @@ void NuevoLibroEntrada::recibirCategoria(elementopareado categoria)
     categorias.append(categoria);
 
     QListWidgetItem *item = new QListWidgetItem(categoria.elemento, ui->lwCategorias);
+    Q_UNUSED(item)
 }
 
 void NuevoLibroEntrada::cerrar()
@@ -359,6 +361,7 @@ void NuevoLibroEntrada::cargarLibro()
         autor.elemento = query2.value(1).toString();
         autores.append(autor);
         QListWidgetItem *item = new QListWidgetItem(autor.elemento, ui->lwAutores);
+        Q_UNUSED(item)
     }
 
     sql = QString("SELECT * FROM libros_categorias WHERE libro_id = %1").arg(libro_modificandi);
@@ -379,6 +382,7 @@ void NuevoLibroEntrada::cargarLibro()
         categoria.elemento = query2.value(1).toString();
         categorias.append(categoria);
         QListWidgetItem *item = new QListWidgetItem(categoria.elemento, ui->lwCategorias);
+        Q_UNUSED(item)
 
     }
 
