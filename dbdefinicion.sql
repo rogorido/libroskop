@@ -15,6 +15,14 @@ CREATE TABLE IF NOT EXISTS `libros_autores` (
 	FOREIGN KEY(`autor_id`) REFERENCES `autores`(`autor_id`),
 	FOREIGN KEY(`libro_id`) REFERENCES `libro`(`libro_id`)
 );
+DROP TABLE IF EXISTS `libros_editores`;
+CREATE TABLE IF NOT EXISTS `libros_editores` (
+	`libro_editor_id`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+	`libro_id`	INTEGER,
+	`editor_id`	INTEGER,
+	FOREIGN KEY(`editor_id`) REFERENCES `autores`(`autor_id`),
+	FOREIGN KEY(`libro_id`) REFERENCES `libro`(`libro_id`)
+);
 DROP TABLE IF EXISTS `libro`;
 CREATE TABLE IF NOT EXISTS `libro` (
 	`libro_id`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
