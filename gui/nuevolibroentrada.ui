@@ -2,8 +2,20 @@
 <ui version="4.0">
  <class>NuevoLibroEntrada</class>
  <widget class="QWidget" name="NuevoLibroEntrada">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>918</width>
+    <height>420</height>
+   </rect>
+  </property>
   <property name="windowTitle">
    <string>Introducir nuevo libro</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="../icons.qrc">
+    <normaloff>:/icons/icons/book.png</normaloff>:/icons/icons/book.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_5">
    <item>
@@ -280,6 +292,8 @@
   <tabstop>lwCategorias</tabstop>
   <tabstop>lwAutores</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="../icons.qrc"/>
+ </resources>
  <connections/>
 </ui>
