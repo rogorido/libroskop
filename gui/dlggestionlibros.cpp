@@ -81,18 +81,31 @@ void dlgGestionLibros::on_rbEmbajada_clicked()
 
 void dlgGestionLibros::on_pbBorrar_clicked()
 {
-    QModelIndex idx = ui->tvLibros->currentIndex();
+    /*
+     * Joder esto es un puot lío... necesito tanto puto idx?
+     */
 
+    // esto entiendo que coge el índice del tableview...
+    QModelIndex idx = ui->tvLibros->currentIndex();
     if (!idx.isValid())
         return;
+
+    // de ahí coge el índice del model que subyace (que es un qsortfilteretc)...
+    QModelIndex idx2 = idx.model()->index(idx.row(), 0);
+    if (!idx2.isValid())
+        return;
+
+    // y eso lo mapea al original.
+    QModelIndex idx3 = m_libros_proxy->mapToSource(idx2);
+    if (!idx3.isValid())
+        return;
+
+    int libro_id = m_libros->data(idx3, Qt::DisplayRole).toInt();
 
     QMessageBox::StandardButton reply;
     reply = QMessageBox::question(this, "Borrar libro", "Davidiano, ¿seguro que quieres borrar este libro?",
                                     QMessageBox::Yes|QMessageBox::No);
     if (reply == QMessageBox::Yes) {
-        int row = ui->tvLibros->currentIndex().row();
-        QModelIndex idx2 = m_libros->index(row, 0);
-        int libro_id = m_libros->data(idx2, Qt::DisplayRole).toInt();
         qDebug() << "el id del libro es: " << libro_id;
         borrarLibro(libro_id);
     }
