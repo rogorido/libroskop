@@ -106,6 +106,9 @@ void dlgGestionLibros::borrarLibro(int id)
     if (!query.exec(QString("DELETE FROM libros_autores WHERE libro_id=%1").arg(id)))
         qDebug() << "fallido borrado de libros_autores";
 
+    if (!query.exec(QString("DELETE FROM libros_editores WHERE libro_id=%1").arg(id)))
+        qDebug() << "fallido borrado de libros_editores";
+
     if (!query.exec(QString("DELETE FROM libros_categorias WHERE libro_id=%1").arg(id)))
         qDebug() << "fallido borrado de libros_categorias";
 
