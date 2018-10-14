@@ -8,3 +8,4 @@ libroskop
 *.db
 ui_*
 qrc_icons.cpp
+compile_commands.json
