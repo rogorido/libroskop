@@ -327,6 +327,7 @@ void NuevoLibroEntrada::cargarLibro()
     QSqlQuery query, query2;
     QString sql, sql2;
     elementopareado autor;
+    elementopareado editor;
     elementopareado categoria;
 
     sql = QString("SELECT * FROM libro WHERE libro_id = %1").arg(libro_modificandi);
@@ -363,6 +364,35 @@ void NuevoLibroEntrada::cargarLibro()
         QListWidgetItem *item = new QListWidgetItem(autor.elemento, ui->lwAutores);
         Q_UNUSED(item)
     }
+
+    /*
+      Ahora los editores.
+    */
+
+    sql = QString("SELECT * FROM libros_editores WHERE libro_id = %1").arg(libro_modificandi);
+    if (!query.exec(sql))
+        qDebug() << query.lastError();
+
+    while (query.next()) {
+        autor.id = query.value(2).toInt();
+
+        // Extraemos nombre y apellidos...
+        sql2 = QString("SELECT autor_id, nombre || ' ' || apellido FROM autores WHERE autor_id = %1").arg(autor.id);
+        if (!query2.exec(sql2)){
+            qDebug() << query2.lastError();
+            return;
+        }
+
+        query2.first();
+        editor.elemento = query2.value(1).toString();
+        editores.append(editor);
+        QListWidgetItem *item = new QListWidgetItem(editor.elemento, ui->lwEditores);
+        Q_UNUSED(item)
+    }
+
+    /*
+      Ahora las categorías.
+    */
 
     sql = QString("SELECT * FROM libros_categorias WHERE libro_id = %1").arg(libro_modificandi);
     if (!query.exec(sql))
