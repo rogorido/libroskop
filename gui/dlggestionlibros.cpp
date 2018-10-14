@@ -53,6 +53,19 @@ dlgGestionLibros::dlgGestionLibros(QWidget *parent) :
 
     sql_activa = sql_general;
     ui->lblTotal->setText(QString("Total: %1").arg(m_libros->rowCount()));
+
+    /*
+      Inicializamos también los otros modelos, aunque
+      todavía no los cargamos.
+    */
+
+    m_autores = new QSqlQueryModel(this);
+    m_editores = new QSqlQueryModel(this);
+    m_categorias = new QSqlQueryModel(this);
+
+    connect(ui->tvLibros->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)),
+            this, SLOT(seleccionarLibro(QModelIndex)));
+
 }
 
 dlgGestionLibros::~dlgGestionLibros()
@@ -177,4 +190,53 @@ void dlgGestionLibros::on_pbEditar_clicked()
     int libro_id = m_libros->data(idx3, Qt::DisplayRole).toInt();
 
     emit(modificarLibro(libro_id));
+}
+
+void dlgGestionLibros::cargarDatosDerivados(int libro_id){
+
+    QSqlQuery query;
+    // qDebug() << "escogido: " << libro_id;
+
+    m_autores->setQuery(QString("SELECT nombre || ' ' || apellido FROM autores a JOIN libros_autores la ON a.autor_id = la.autor_id WHERE la.libro_id = %1").arg(libro_id));
+    m_autores->setHeaderData(0, Qt::Horizontal, trUtf8("Autor(es)"));
+    ui->tvAutores->setModel(m_autores);
+    ui->tvAutores->setAlternatingRowColors(true);
+    ui->tvAutores->resizeColumnsToContents();
+    // ui->tvAutores->setSelectionBehavior(QAbstractItemView::SelectRows);
+    // ui->tvAutores->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->tvAutores->horizontalHeader()->setStretchLastSection(true);
+
+    m_editores->setQuery(QString("SELECT nombre || ' ' || apellido FROM autores a JOIN libros_editores la ON a.autor_id = la.editor_id WHERE la.libro_id = %1").arg(libro_id));
+    m_editores->setHeaderData(0, Qt::Horizontal, trUtf8("Editor(es)"));
+    ui->tvEditores->setModel(m_editores);
+    ui->tvEditores->setAlternatingRowColors(true);
+    ui->tvEditores->resizeColumnsToContents();
+    // ui->tvEditores->setSelectionBehavior(QAbstractItemView::SelectRows);
+    // ui->tvEditores->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->tvEditores->horizontalHeader()->setStretchLastSection(true);
+
+    m_categorias->setQuery(QString("SELECT categoria FROM categorias c JOIN libros_categorias lc ON c.categoria_id = lc.categoria_id WHERE lc.libro_id = %1").arg(libro_id));
+    m_categorias->setHeaderData(0, Qt::Horizontal, trUtf8("Categoría(s)"));
+    ui->tvCategorias->setModel(m_categorias);
+    ui->tvCategorias->setAlternatingRowColors(true);
+    ui->tvCategorias->resizeColumnsToContents();
+    // ui->tvCategorias->setSelectionBehavior(QAbstractItemView::SelectRows);
+    // ui->tvCategorias->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->tvCategorias->horizontalHeader()->setStretchLastSection(true);
+
+}
+
+void dlgGestionLibros::seleccionarLibro(const QModelIndex &idx){
+
+    int libro_seleccionado;
+
+    Q_UNUSED(idx)
+    // NOTE: aquí no estoy usando lo de idx... he cogido este código de lo de modificar persona...
+    QModelIndex indice= m_libros_proxy->index(ui->tvLibros->currentIndex().row(), 0);
+    if (!indice.isValid())
+        return;
+
+    libro_seleccionado = m_libros->data(m_libros_proxy->mapToSource(indice), Qt::DisplayRole).toInt();
+
+    cargarDatosDerivados(libro_seleccionado);
 }

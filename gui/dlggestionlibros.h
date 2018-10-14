@@ -30,6 +30,8 @@ private slots:
 
     void borrarLibro(int id);
     void actualizarLabelTotales();
+    void cargarDatosDerivados(int libro_id);
+    void seleccionarLibro(const QModelIndex &idx);
 
 signals:
 
@@ -40,6 +42,9 @@ private:
 
     QSqlQueryModel *m_libros;
     QSortFilterProxyModel *m_libros_proxy;
+    QSqlQueryModel *m_autores;
+    QSqlQueryModel *m_editores;
+    QSqlQueryModel *m_categorias;
 
     QString sql_activa;
 };
