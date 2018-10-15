@@ -9,3 +9,4 @@ libroskop
 ui_*
 qrc_icons.cpp
 compile_commands.json
+build/
