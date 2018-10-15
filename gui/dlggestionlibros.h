@@ -5,6 +5,7 @@
 
 class QSqlQueryModel;
 class QSortFilterProxyModel;
+class QModelIndex;
 
 namespace Ui {
 class dlgGestionLibros;
