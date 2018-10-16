@@ -1,6 +1,7 @@
 [Desktop Entry]
 Encoding=UTF-8
-Exec=/home/david/git/libroskop/libroskop
+#Exec=/home/david/git/libroskop/libroskop
+Exec=/home/david/git/libroskop/build/libroskop
 Icon=/home/david/git/libroskop/icons/biblioteca.png
 Type=Application
 Terminal=false
