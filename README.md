@@ -1,1 +1,1 @@
-Small C++/Qt application for personal use.
+Small C++/Qt application for personal use (book database).
